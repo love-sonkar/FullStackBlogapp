@@ -1,5 +1,6 @@
 import toast from "react-hot-toast"
 import DataBase from "../../appwrite/dbconfig"
+import fileUpload from "../../appwrite/uploadfile";
 
 export const FetchSinglePost=async(id)=>{
     try {
@@ -14,3 +15,5 @@ export const FetchSinglePost=async(id)=>{
         console.log(error)
     }
 }
+
+export const ImageFilePreviewSrc = (id)=> fileUpload.FilePreview(id); 

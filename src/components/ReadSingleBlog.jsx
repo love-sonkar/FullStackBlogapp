@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ButtonComponent from "./ButtonComponent";
 import toast from "react-hot-toast";
 import DataBase from "../appwrite/dbconfig";
-import fileUpload from "../appwrite/uploadfile";
+import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
+import { useSelector } from "react-redux";
 
 const ReadSingleBlog = () => {
   const [singlePost, setSinglePost] = useState(null);
   const param = useParams();
+  const userData = useSelector(state=>state.userData);
+  const navigate = useNavigate()
   useEffect(() => {
     const FetchSingleBlog = async ()=>{
         try {
@@ -21,15 +24,15 @@ const ReadSingleBlog = () => {
   }, []);
 
   return (
-    <>
+    <div className="p-4 flex items-center justify-center h-full">
       {singlePost === null ? (
-        <h2>Loading..</h2>
+        <h2>Loading...</h2>
       ) : (
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <Link link="/">
             <img
               className="rounded-t-lg"
-              src={fileUpload.FilePreview(singlePost.images)}
+              src={ImageFilePreviewSrc(singlePost.images)}
               alt=""
             />
           </Link>
@@ -41,15 +44,16 @@ const ReadSingleBlog = () => {
               {singlePost?.content}
             </p>
             <div className="flex gap-3">
-              {/* {userData && userData?.$id === data?.userid ? (
-          <ButtonComponent>Edit</ButtonComponent>
-        ) : null} */}
+              {userData && userData?.$id === singlePost?.userid ? (
+          <ButtonComponent onClick={()=>navigate(`/editblog/${param.id}`)}>Edit</ButtonComponent>
+        ) : null}
+        <ButtonComponent onClick={()=>navigate('/')}>Back</ButtonComponent>
 
             </div>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

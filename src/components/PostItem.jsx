@@ -1,8 +1,8 @@
 import React from "react";
 import { ButtonComponent } from "./index";
 import { Link, useNavigate } from "react-router-dom";
-import fileUpload from "../appwrite/uploadfile";
 import { useSelector } from "react-redux";
+import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 
 const PostItem = ({ data }) => {
   const navigate = useNavigate()
@@ -11,8 +11,8 @@ const PostItem = ({ data }) => {
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <Link link="/" >
         <img
-          className="rounded-t-lg aspect-video object-cover"
-          src={fileUpload.FilePreview(data.images)}
+          className="rounded-t-lg aspect-video object-contain"
+          src={ImageFilePreviewSrc(data.images)}
           alt=""
         />
       </Link>

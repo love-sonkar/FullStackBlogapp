@@ -12,29 +12,24 @@ import toast from "react-hot-toast";
 import DataBase from "../appwrite/dbconfig";
 import { useNavigate } from "react-router-dom";
 import fileUpload from "../appwrite/uploadfile";
+import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 
 const AddBlog = ({data}) => {
-  const [fileinput,setfileInput] = useState()
   const navigate = useNavigate();
   const userData = useSelector((state) => state.userData);
-  console.log(data)
   const {
     handleSubmit,
     register,
     reset,
     formState: { errors, isSubmitting },
   } = useForm({defaultValues:{
-    title:data?.title ?? "",
-    content:data?.content??"",
+    title:data?.title || "",
+    content:data?.content || "",
   },resolver:zodResolver(AddBlogObject)});
-  const handleAddBlog = async (data) => {
-    // if(data?.images)
-    if(!fileinput){
-      return toast.error("Please add image")
-    }
-    const imagefile = fileinput && await fileUpload.UploadFile(fileinput)
+  const handleAddBlog = async (blogdata) => {
+    const imagefile = blogdata?.images && await fileUpload.UploadFile(blogdata?.images[0])
     const formData = {
-      ...data,
+      ...blogdata,
       images:imagefile.$id,
       status: "active",
       userid: userData.$id,
@@ -57,7 +52,15 @@ const AddBlog = ({data}) => {
         onSubmit={handleSubmit(handleAddBlog)}
         className="flex flex-col gap-4 w-96 border rounded-md p-4  dark:bg-gray-900 border-gray-200 dark:border-gray-600"
       >
-        <HeadingTag>Add Blog</HeadingTag>
+        <HeadingTag>{data ? "Edit" :"Add"} Blog</HeadingTag>
+        {data?.images ?<>
+          <h2>Image Preview</h2>
+        <div className="aspect-video overflow-hidden">
+          <img className="aspect-video object-contain"  src={ImageFilePreviewSrc(data?.images)} alt="" />
+        </div>
+        </>
+        :null
+        }
         <div>
           <label
             htmlFor="title"
@@ -95,7 +98,7 @@ const AddBlog = ({data}) => {
           >
           image
           </label>
-        <input type="file" id="images"  onChange={(e)=>setfileInput(e.target.files[0])} />
+          <InputBox type="file" id="images" register={register("images")} />
           {errors?.images && <ErrorText>{errors?.images?.message}</ErrorText>}
         </div>
 
