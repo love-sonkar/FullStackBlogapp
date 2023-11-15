@@ -11,11 +11,13 @@ import App from "./App.jsx";
 import AddBlog from "./components/AddBlog.jsx";
 import ReadSingleBlog from "./components/ReadSingleBlog.jsx";
 import EditBlog from "./components/EditBlog.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 
 const route = createBrowserRouter([
   {
     path: "/",
     element: <OutletWrapper />,
+    errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <AuthLayout authentication={true}><App/></AuthLayout> },
       {
@@ -56,7 +58,8 @@ const route = createBrowserRouter([
             <EditBlog/>
           </AuthLayout>
         )
-      }
+      },
+      
     ],
   },
 ]);

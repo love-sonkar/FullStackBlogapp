@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import FromSectionWrapper from "./formcomponent/FromSectionWrapper";
 import { useForm } from "react-hook-form";
 import HeadingTag from "./HeadingTag";
@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import fileUpload from "../appwrite/uploadfile";
 import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 
-const AddBlog = ({data}) => {
+const AddBlog = ({ data }) => {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.userData);
   const {
@@ -22,20 +22,24 @@ const AddBlog = ({data}) => {
     register,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm({defaultValues:{
-    title:data?.title || "",
-    content:data?.content || "",
-  },resolver:zodResolver(AddBlogObject)});
+  } = useForm({
+    defaultValues: {
+      title: data?.title || "",
+      content: data?.content || "",
+    },
+    resolver: zodResolver(AddBlogObject),
+  });
   const handleAddBlog = async (blogdata) => {
-    const imagefile = blogdata?.images && await fileUpload.UploadFile(blogdata?.images[0])
+    const imagefile =
+      blogdata?.images && (await fileUpload.UploadFile(blogdata?.images[0]));
     const formData = {
       ...blogdata,
-      images:imagefile.$id,
+      images: imagefile.$id,
       status: "active",
       userid: userData.$id,
     };
     try {
-      const postData = await DataBase.CreatePost({...formData});
+      const postData = await DataBase.CreatePost({ ...formData });
       if (postData) {
         toast.success("Blog Added");
         navigate("/");
@@ -52,15 +56,19 @@ const AddBlog = ({data}) => {
         onSubmit={handleSubmit(handleAddBlog)}
         className="flex flex-col gap-4 w-96 border rounded-md p-4  dark:bg-gray-900 border-gray-200 dark:border-gray-600"
       >
-        <HeadingTag>{data ? "Edit" :"Add"} Blog</HeadingTag>
-        {data?.images ?<>
-          <h2>Image Preview</h2>
-        <div className="aspect-video overflow-hidden">
-          <img className="aspect-video object-contain"  src={ImageFilePreviewSrc(data?.images)} alt="" />
-        </div>
-        </>
-        :null
-        }
+        <HeadingTag>{data ? "Edit" : "Add"} Blog</HeadingTag>
+        {data?.images ? (
+          <>
+            <h2>Image Preview</h2>
+            <div className="aspect-video overflow-hidden">
+              <img
+                className="aspect-video object-contain"
+                src={ImageFilePreviewSrc(data?.images)}
+                alt=""
+              />
+            </div>
+          </>
+        ) : null}
         <div>
           <label
             htmlFor="title"
@@ -96,9 +104,13 @@ const AddBlog = ({data}) => {
             htmlFor="images"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-          image
+            image
           </label>
-          <InputBox type="file" id="images" register={register("images")} />
+          <InputBox
+            type="file"
+            id="images"
+            register={register("images")}
+            className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-blue-700 hover:file:bg-violet-100 file:cursor-pointer"/>
           {errors?.images && <ErrorText>{errors?.images?.message}</ErrorText>}
         </div>
 

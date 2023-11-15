@@ -22,7 +22,6 @@ const ReadSingleBlog = () => {
     }
     FetchSingleBlog()
   }, []);
-
   return (
     <div className="p-4 flex items-center justify-center h-full">
       {singlePost === null ? (
@@ -32,8 +31,8 @@ const ReadSingleBlog = () => {
           <Link link="/">
             <img
               className="rounded-t-lg"
-              src={ImageFilePreviewSrc(singlePost.images)}
-              alt=""
+              src={ImageFilePreviewSrc(singlePost?.images)}
+              alt={singlePost?.images}
             />
           </Link>
           <div className="p-5">
