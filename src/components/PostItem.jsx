@@ -3,6 +3,7 @@ import { ButtonComponent } from "./index";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
+import AuthorComponent from "./AuthorComponent";
 
 const PostItem = ({ data }) => {
   const navigate = useNavigate()
@@ -10,8 +11,10 @@ const PostItem = ({ data }) => {
   const Concatinate =(paragraph,digit)=>{
     return paragraph.length >= digit ? paragraph.slice(0,digit) + "..." : paragraph;
   }
+
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <AuthorComponent name={data?.author} />
       <Link link="/" >
         <img
           className="rounded-t-lg aspect-video object-contain"
@@ -19,7 +22,7 @@ const PostItem = ({ data }) => {
           alt=""
         />
       </Link>
-      <div className="p-5">
+      <div className="p-5 border-t-2 dark:border-gray-500 mt-2">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {data.title}
         </h5>

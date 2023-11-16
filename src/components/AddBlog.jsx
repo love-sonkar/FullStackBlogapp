@@ -17,9 +17,10 @@ import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 const AddBlog = ({ data }) => {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.userData);
-  const getFileFunction = async ()=>{
-    return await fileUpload.GetFile(data.images)
-  }
+  console.log(userData?.name)
+  const getFileFunction = async () => {
+    return await fileUpload.GetFile(data.images);
+  };
   const {
     handleSubmit,
     register,
@@ -29,34 +30,34 @@ const AddBlog = ({ data }) => {
     defaultValues: {
       title: data?.title || "",
       content: data?.content || "",
-      images:data?.images || FileList
+      images: data?.images || FileList,
     },
     resolver: zodResolver(AddBlogObject),
   });
   const handleAddBlog = async (blogdata) => {
-    if(data){
-    console.log("datahii")
+    if (data) {
+      console.log("datahii");
       // navigate('/')
-    }else{
+    } else {
+      const imagefile =
+        blogdata?.images && (await fileUpload.UploadFile(blogdata?.images[0]));
 
-    const imagefile =
-      blogdata?.images && (await fileUpload.UploadFile(blogdata?.images[0]));
-    const formData = {
-      ...blogdata,
-      images: imagefile.$id,
-      status: "active",
-      userid: userData.$id,
-    };
-    try {
-      const postData = await DataBase.CreatePost({ ...formData });
-      if (postData) {
-        toast.success("Blog Added");
-        navigate("/");
+      try {
+        const postData = await DataBase.CreatePost({
+          ...blogdata,
+          images: imagefile.$id,
+          status: "active",
+          userid: userData.$id,
+          author: userData.name,
+        });
+        if (postData) {
+          toast.success("Blog Added");
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
-  }
 
     reset();
   };
@@ -82,27 +83,29 @@ const AddBlog = ({ data }) => {
         ) : null}
         <div>
           <InputBox
-          title="Title"
+            title="Title"
             register={register("title")}
             type="text"
             placeholder="Type your Title"
           />
           {errors?.title && <ErrorText>{errors?.title?.message}</ErrorText>}
         </div>
-      
+
         <div>
-       
-        <InputBox
-          title="Image"
-          type="file"
-          register={register("images")}
-          className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-blue-700 hover:file:bg-violet-100 file:cursor-pointer"/>
+          <InputBox
+            title="Image"
+            type="file"
+            register={register("images")}
+            className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-blue-700 hover:file:bg-violet-100 file:cursor-pointer"
+          />
           {errors?.images && <ErrorText>{errors?.images?.message}</ErrorText>}
         </div>
         <div>
-          
-          <TextArea title="Blog Content"
-            register={register("content")} placeholder="Type Your Content..."/>
+          <TextArea
+            title="Blog Content"
+            register={register("content")}
+            placeholder="Type Your Content..."
+          />
           {errors?.content && <ErrorText>{errors?.content?.message}</ErrorText>}
         </div>
         <ButtonComponent type="submit" disabled={isSubmitting}>

@@ -12,7 +12,7 @@ export class dbService {
     this.bucket = new Storage(this.client);
   }
 
-  async CreatePost({ title,  content, images, status, userid }) {
+  async CreatePost({ title,  content, images, status, userid,author }) {
     try {
       return await this.Databases.createDocument(
         conf.DbId,
@@ -24,6 +24,7 @@ export class dbService {
           images,
           status,
           userid,
+          author,
         }
       );
     } catch (error) {
@@ -45,8 +46,7 @@ export class dbService {
         }
       );
     } catch (error) {
-
-      console.log("update", error);
+      toast.error(error.response.message)
     }
   }
 
@@ -55,8 +55,7 @@ export class dbService {
       await this.Databases.deleteDocument(conf.DbId, conf.collectionId, id);
       return true;
     } catch (error) {
-
-      console.log(error, "delete");
+      toast.error(error.response.message)
     }
   }
 
@@ -68,8 +67,7 @@ export class dbService {
         id
       );
     } catch (error) {
-
-      console.log("getpost", error);
+      toast.error(error.response.message)
     }
   }
 
@@ -81,8 +79,7 @@ export class dbService {
         queries
       );
     } catch (error) {
-
-      console.log(error);
+      toast.error(error.response.message)
     }
   }
 }
