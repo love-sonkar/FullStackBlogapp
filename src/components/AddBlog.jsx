@@ -18,9 +18,6 @@ const AddBlog = ({ data }) => {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.userData);
 
-  const getFileFunction = async () => {
-    return await fileUpload.GetFile(data.images);
-  };
   const {
     handleSubmit,
     register,
@@ -31,20 +28,29 @@ const AddBlog = ({ data }) => {
       title: data?.title || "",
       content: data?.content || "",
     },
-    resolver: zodResolver(data ?UpdateBlog: AddBlogObject),
+    resolver: zodResolver(data ? UpdateBlog : AddBlogObject),
   });
 
   const handleAddBlog = async (blogdata) => {
     if (data) {
-      const {title,content} = blogdata;
-      try {
-        const updateBlog = await DataBase.updatePost({title,content,id:data?.$id});
-        if(updateBlog){
-          toast.success("blog Updated")
-          navigate("/")
+      const { title, content } = blogdata;
+      if (title !== data?.title || content !== data?.content) {
+        try {
+          const updateBlog = await DataBase.updatePost({
+            title,
+            content,
+            id: data?.$id,
+          });
+          if (updateBlog) {
+            toast.success("blog Updated");
+            navigate("/");
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error)
+      } else {
+        toast.success("No Changes");
+        navigate("/");
       }
     } else {
       const imagefile =
@@ -98,16 +104,17 @@ const AddBlog = ({ data }) => {
           />
           {errors?.title && <ErrorText>{errors?.title?.message}</ErrorText>}
         </div>
-
-        <div>
-          <InputBox
-            title="Image"
-            type="file"
-            register={register("images")}
-            className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-blue-700 hover:file:bg-violet-100 file:cursor-pointer"
-          />
-          {errors?.images && <ErrorText>{errors?.images?.message}</ErrorText>}
-        </div>
+        {data?.images ? null : (
+          <div>
+            <InputBox
+              title="Image"
+              type="file"
+              register={register("images")}
+              className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-blue-700 hover:file:bg-violet-100 file:cursor-pointer"
+            />
+            {errors?.images && <ErrorText>{errors?.images?.message}</ErrorText>}
+          </div>
+        )}
         <div>
           <TextArea
             title="Blog Content"
@@ -117,7 +124,7 @@ const AddBlog = ({ data }) => {
           {errors?.content && <ErrorText>{errors?.content?.message}</ErrorText>}
         </div>
         <ButtonComponent type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "loading" : data ? "Update" : "Add"} Blog
+          {isSubmitting ? "loading" : data ? "Update Blog" : "Add Blog"}
         </ButtonComponent>
       </form>
     </FromSectionWrapper>
