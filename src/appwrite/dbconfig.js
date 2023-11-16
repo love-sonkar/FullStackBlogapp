@@ -32,17 +32,15 @@ export class dbService {
     }
   }
 
-  async updatePost({ title, content, images, status }) {
+  async updatePost({ title, content,id }) {
     try {
       return await this.Databases.updateDocument(
         conf.DbId,
         conf.collectionId,
-        ID.unique(),
+        id,
         {
           title,
           content,
-          images,
-          status,
         }
       );
     } catch (error) {

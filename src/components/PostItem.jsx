@@ -1,13 +1,11 @@
 import React from "react";
 import { ButtonComponent } from "./index";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 import AuthorComponent from "./AuthorComponent";
 
 const PostItem = ({ data }) => {
   const navigate = useNavigate()
-  const userData = useSelector((state) => state.userData);
   const Concatinate =(paragraph,digit)=>{
     return paragraph.length >= digit ? paragraph.slice(0,digit) + "..." : paragraph;
   }
@@ -30,10 +28,6 @@ const PostItem = ({ data }) => {
           {Concatinate(data.content,100)}
         </p>
         <div className="flex gap-3">
-
-        {userData && userData?.$id === data?.userid ? (
-          <ButtonComponent onClick={()=>navigate(`/editblog/${data.$id}`)}>Edit</ButtonComponent>
-          ) : null}
           <ButtonComponent onClick={()=>navigate(`/singleblog/${data.$id}`)}>Read more</ButtonComponent>
           </div>
       </div>

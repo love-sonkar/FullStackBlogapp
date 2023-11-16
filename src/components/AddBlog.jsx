@@ -6,7 +6,7 @@ import InputBox, { TextArea } from "./InputBox";
 import ErrorText from "./formcomponent/ErrorText";
 import ButtonComponent from "./ButtonComponent";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AddBlogObject } from "../formsobject";
+import { AddBlogObject, UpdateBlog } from "../formsobject";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import DataBase from "../appwrite/dbconfig";
@@ -17,7 +17,7 @@ import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 const AddBlog = ({ data }) => {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.userData);
-  console.log(userData?.name)
+
   const getFileFunction = async () => {
     return await fileUpload.GetFile(data.images);
   };
@@ -30,14 +30,22 @@ const AddBlog = ({ data }) => {
     defaultValues: {
       title: data?.title || "",
       content: data?.content || "",
-      images: data?.images || FileList,
     },
-    resolver: zodResolver(AddBlogObject),
+    resolver: zodResolver(data ?UpdateBlog: AddBlogObject),
   });
+
   const handleAddBlog = async (blogdata) => {
     if (data) {
-      console.log("datahii");
-      // navigate('/')
+      const {title,content} = blogdata;
+      try {
+        const updateBlog = await DataBase.updatePost({title,content,id:data?.$id});
+        if(updateBlog){
+          toast.success("blog Updated")
+          navigate("/")
+        }
+      } catch (error) {
+        console.log(error)
+      }
     } else {
       const imagefile =
         blogdata?.images && (await fileUpload.UploadFile(blogdata?.images[0]));
@@ -109,7 +117,7 @@ const AddBlog = ({ data }) => {
           {errors?.content && <ErrorText>{errors?.content?.message}</ErrorText>}
         </div>
         <ButtonComponent type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "loading" : "Add Blog"}
+          {isSubmitting ? "loading" : data ? "Update" : "Add"} Blog
         </ButtonComponent>
       </form>
     </FromSectionWrapper>
