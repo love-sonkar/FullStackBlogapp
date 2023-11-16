@@ -14,7 +14,10 @@ const ReadSingleBlog = () => {
   useEffect(() => {
     const FetchSingleBlog = async ()=>{
         try {
-            DataBase.GetSinglePost(param.id).then((singleitem)=>setSinglePost(singleitem)).catch(e=>toast.error(e.response.message))
+          const post = await DataBase.GetSinglePost(param.id);
+          if(post){
+            setSinglePost(post)
+          }
         } catch (error) {
             toast.error(error.response.message)
             console.log(error)

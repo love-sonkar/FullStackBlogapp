@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FromSectionWrapper from "./formcomponent/FromSectionWrapper";
 import { useForm } from "react-hook-form";
 import HeadingTag from "./HeadingTag";
-import InputBox from "./InputBox";
+import InputBox, { TextArea } from "./InputBox";
 import ErrorText from "./formcomponent/ErrorText";
 import ButtonComponent from "./ButtonComponent";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +17,9 @@ import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 const AddBlog = ({ data }) => {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.userData);
+  const getFileFunction = async ()=>{
+    return await fileUpload.GetFile(data.images)
+  }
   const {
     handleSubmit,
     register,
@@ -26,10 +29,16 @@ const AddBlog = ({ data }) => {
     defaultValues: {
       title: data?.title || "",
       content: data?.content || "",
+      images:data?.images || FileList
     },
     resolver: zodResolver(AddBlogObject),
   });
   const handleAddBlog = async (blogdata) => {
+    if(data){
+    console.log("datahii")
+      // navigate('/')
+    }else{
+
     const imagefile =
       blogdata?.images && (await fileUpload.UploadFile(blogdata?.images[0]));
     const formData = {
@@ -47,6 +56,8 @@ const AddBlog = ({ data }) => {
     } catch (error) {
       console.log(error);
     }
+  }
+
     reset();
   };
   return (
@@ -70,50 +81,30 @@ const AddBlog = ({ data }) => {
           </>
         ) : null}
         <div>
-          <label
-            htmlFor="title"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Title
-          </label>
           <InputBox
-            id="title"
+          title="Title"
             register={register("title")}
             type="text"
             placeholder="Type your Title"
           />
           {errors?.title && <ErrorText>{errors?.title?.message}</ErrorText>}
         </div>
+      
         <div>
-          <label
-            htmlFor="content"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Blog Content
-          </label>
-          <InputBox
-            id="content"
-            register={register("content")}
-            type="text"
-            placeholder="Type your email"
-          />
-          {errors?.content && <ErrorText>{errors?.content?.message}</ErrorText>}
-        </div>
-        <div>
-          <label
-            htmlFor="images"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            image
-          </label>
-          <InputBox
-            type="file"
-            id="images"
-            register={register("images")}
-            className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-blue-700 hover:file:bg-violet-100 file:cursor-pointer"/>
+       
+        <InputBox
+          title="Image"
+          type="file"
+          register={register("images")}
+          className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-blue-700 hover:file:bg-violet-100 file:cursor-pointer"/>
           {errors?.images && <ErrorText>{errors?.images?.message}</ErrorText>}
         </div>
-
+        <div>
+          
+          <TextArea title="Blog Content"
+            register={register("content")} placeholder="Type Your Content..."/>
+          {errors?.content && <ErrorText>{errors?.content?.message}</ErrorText>}
+        </div>
         <ButtonComponent type="submit" disabled={isSubmitting}>
           {isSubmitting ? "loading" : "Add Blog"}
         </ButtonComponent>

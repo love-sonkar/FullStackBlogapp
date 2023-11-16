@@ -7,6 +7,9 @@ import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 const PostItem = ({ data }) => {
   const navigate = useNavigate()
   const userData = useSelector((state) => state.userData);
+  const Concatinate =(paragraph,digit)=>{
+    return paragraph.length >= digit ? paragraph.slice(0,digit) + "..." : paragraph;
+  }
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <Link link="/" >
@@ -21,7 +24,7 @@ const PostItem = ({ data }) => {
           {data.title}
         </h5>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {data.content}
+          {Concatinate(data.content,100)}
         </p>
         <div className="flex gap-3">
 
