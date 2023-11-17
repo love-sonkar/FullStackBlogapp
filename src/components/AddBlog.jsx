@@ -48,10 +48,9 @@ const AddBlog = ({ data }) => {
         } catch (error) {
           console.log(error);
         }
-      } else {
-        toast.success("No Changes");
-        navigate("/");
       }
+      toast.success("No Changes");
+      navigate("/");
     } else {
       const imagefile =
         blogdata?.images && (await fileUpload.UploadFile(blogdata?.images[0]));
