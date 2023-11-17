@@ -3,7 +3,7 @@ import PostItem from "./components/PostItem"
 import DataBase from "./appwrite/dbconfig"
 
 const App = () => {
-const [post,setPost] = useState(null)
+const [post,setPost] = useState(null);
 useEffect(() => {
   if(!post){
     DataBase.GetAllPost().then((data)=>setPost(data)).catch(e=>console.log(e))

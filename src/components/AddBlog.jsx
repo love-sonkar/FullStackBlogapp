@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FromSectionWrapper from "./formcomponent/FromSectionWrapper";
 import { useForm } from "react-hook-form";
 import HeadingTag from "./HeadingTag";
@@ -84,7 +84,7 @@ const AddBlog = ({ data }) => {
         <HeadingTag>{data ? "Edit" : "Add"} Blog</HeadingTag>
         {data?.images ? (
           <>
-            <h2>Image Preview</h2>
+            <h2 className="dark:text-white">Image Preview</h2>
             <div className="aspect-video overflow-hidden">
               <img
                 className="aspect-video object-contain"

@@ -3,16 +3,27 @@ import { ButtonComponent } from "./index";
 import { Link, useNavigate } from "react-router-dom";
 import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 import AuthorComponent from "./AuthorComponent";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const PostItem = ({ data }) => {
   const navigate = useNavigate()
+  const userData=  useSelector(state=>state.userData)
   const Concatinate =(paragraph,digit)=>{
     return paragraph.length >= digit ? paragraph.slice(0,digit) + "..." : paragraph;
   }
-
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="flex justify-between items-center  border-b-2 dark:border-gray-500 mb-2 px-3">
       <AuthorComponent name={data?.author} />
+      {userData?.$id === data?.userid ? 
+      <div
+      className="p-2 dark:text-white hover:dark:bg-gray-700 cursor-pointer hover:bg-gray-400 hover:text-white rounded-full"
+      >
+        <BsThreeDotsVertical onClick={()=>navigate(`/options/${data?.$id}/${data?.images}`)} />
+      </div>
+      : null}
+      </div>
       <Link link="/" >
         <img
           className="rounded-t-lg aspect-video object-contain"

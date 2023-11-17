@@ -12,6 +12,7 @@ import AddBlog from "./components/AddBlog.jsx";
 import ReadSingleBlog from "./components/ReadSingleBlog.jsx";
 import EditBlog from "./components/EditBlog.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
+import OptionComponent from "./components/OptionComponent.jsx";
 
 const route = createBrowserRouter([
   {
@@ -56,6 +57,14 @@ const route = createBrowserRouter([
         element:(
           <AuthLayout authentication={true}>
             <EditBlog/>
+          </AuthLayout>
+        )
+      },
+      {
+        path:"/options/:id/:imageid",
+        element:(
+          <AuthLayout authentication={true}>
+            <OptionComponent/>
           </AuthLayout>
         )
       },
