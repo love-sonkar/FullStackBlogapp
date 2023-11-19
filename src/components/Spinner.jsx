@@ -19,7 +19,7 @@ const Spinner = () => {
           fill="currentFill"
         />
       </svg>
-      <h2 className="dark:text-white text-black">Loading...</h2>
+      <h2>Loading...</h2>
     </div>
   );
 };

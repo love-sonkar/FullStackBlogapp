@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import { login } from '../../reduxstore/authSlice'
 import ButtonComponent from '../ButtonComponent'
 import toast from 'react-hot-toast'
+import GuestLogin from '../GuestLogin'
 
 const SignupForm = () => {
   const navigate = useNavigate()
@@ -71,6 +72,7 @@ const SignupForm = () => {
       </div>
 
       <ButtonComponent type="submit" disabled={isSubmitting}>Singup</ButtonComponent>
+      <GuestLogin title='Singup'/>
       <p className='text-center text-black dark:text-white'>Have a account <Link to="/login" className='decoration-solid text-blue-400'>Login</Link></p>
     </form>
   </FromSectionWrapper>

@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../reduxstore/authSlice";
 import ButtonComponent from "../ButtonComponent";
 import toast from "react-hot-toast";
+import GuestLogin from "../GuestLogin";
 
 const Login = () => {
   const navigate = useNavigate()
@@ -28,13 +29,9 @@ const Login = () => {
           toast.success("User Login")
           navigate("/")
         }
-      } else{
-        navigate("/signup")
-      }
-
+      } 
     } catch (error) {
-
-      console.log(error,'this is error')
+      console.log(error)
     }
     reset()
   }
@@ -65,7 +62,7 @@ const Login = () => {
 
         </div>
     <ButtonComponent type="submit" disabled={isSubmitting}>Login</ButtonComponent>
-
+    <GuestLogin title="Login" />
       <p className="text-center py-3 text-black dark:text-white">Have a account <Link to="/signup" className="text-blue-400">Signup</Link></p>
 
       </form>
