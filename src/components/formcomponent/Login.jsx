@@ -64,7 +64,7 @@ const Login = () => {
           {errors?.password && <ErrorText >{errors?.password?.message }</ErrorText>}
 
         </div>
-    <ButtonComponent type="submit" disabled={isSubmitting}>{isSubmitting ?"loading":"Login"}</ButtonComponent>
+    <ButtonComponent type="submit" disabled={isSubmitting}>Login</ButtonComponent>
 
       <p className="text-center py-3 text-black dark:text-white">Have a account <Link to="/signup" className="text-blue-400">Signup</Link></p>
 

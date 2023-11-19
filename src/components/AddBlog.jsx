@@ -123,7 +123,7 @@ const AddBlog = ({ data }) => {
           {errors?.content && <ErrorText>{errors?.content?.message}</ErrorText>}
         </div>
         <ButtonComponent type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "loading" : data ? "Update Blog" : "Add Blog"}
+          {data ? "Update Blog" : "Add Blog"}
         </ButtonComponent>
       </form>
     </FromSectionWrapper>

@@ -70,7 +70,7 @@ const SignupForm = () => {
 
       </div>
 
-      <ButtonComponent type="submit" disabled={isSubmitting}>{isSubmitting ?"loading":"Signup"}</ButtonComponent>
+      <ButtonComponent type="submit" disabled={isSubmitting}>Singup</ButtonComponent>
       <p className='text-center text-black dark:text-white'>Have a account <Link to="/login" className='decoration-solid text-blue-400'>Login</Link></p>
     </form>
   </FromSectionWrapper>

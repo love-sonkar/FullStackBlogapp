@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import authServcie from "../appwrite/auth";
 import { logOut } from "../reduxstore/authSlice";
 import { useNavigate } from "react-router-dom";
-import Spinner from "./Spinner";
 
 const LogOutButton = () => {
   const dispatch = useDispatch();
@@ -24,7 +23,7 @@ const LogOutButton = () => {
 
   };
 
-  return <ButtonComponent disabled={loading} onClick={logOutFunction}>{loading ? <Spinner/>: "Logout"}</ButtonComponent>;
+  return <ButtonComponent disabled={loading} onClick={logOutFunction}>Logout</ButtonComponent>;
 };
 
 export default LogOutButton;

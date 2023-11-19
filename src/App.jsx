@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { PostItem } from "./components";
 import DataBase from "./appwrite/dbconfig"
-import Spinner from "./components/Spinner";
+import { FullScreenSpinner } from "./components/Spinner";
 
 
 const App = () => {
@@ -13,7 +13,7 @@ useEffect(() => {
 }, [])
   return (
     <div className='p-4 flex-wrap flex gap-3 items-center justify-center'>
-    {post ==null ?<Spinner />: post.documents.length <= 0 ? <h2>No Blog To Show</h2> : post.documents.map((item)=><PostItem key={item.$id} data={item} />)}
+    {post ==null ?<FullScreenSpinner />: post.documents.length <= 0 ? <h2 className="dark:text-white text-black">No Blog To Show</h2> : post.documents.map((item)=><PostItem key={item.$id} data={item} />)}
     </div>
   )
 }

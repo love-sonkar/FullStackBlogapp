@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AddBlog from "./AddBlog";
 import { FetchSinglePost } from "./formcomponent/FetchingData";
+import { FullScreenSpinner } from "./Spinner";
 
 const EditBlog = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const EditBlog = () => {
       .catch((e) => console.log(e));
   }, [navigate, id]);
   return (
-    <>{blogdata == null ? <h2>Loading...</h2> : <AddBlog data={blogdata} />}</>
+    <>{blogdata == null ? <FullScreenSpinner/> : <AddBlog data={blogdata} />}</>
   );
 };
 
