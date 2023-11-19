@@ -1,18 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { OutletWrapper, Login } from "./components/index.js";
+import { OutletWrapper, Login,App,SignupForm } from "./components/index.js";
 import { Provider } from "react-redux";
 import Store from "./reduxstore/Store.js";
-import SignupForm from "./components/formcomponent/SignupForm.jsx";
 import AuthLayout from "./components/formcomponent/AuthLayout.jsx";
-import App from "./App.jsx";
 import AddBlog from "./components/AddBlog.jsx";
 import ReadSingleBlog from "./components/ReadSingleBlog.jsx";
 import EditBlog from "./components/EditBlog.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import OptionComponent from "./components/OptionComponent.jsx";
+import {FullScreenSpinner} from "./components/Spinner.jsx";
 
 const route = createBrowserRouter([
   {
@@ -76,7 +75,9 @@ const route = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={Store}>
+      <Suspense fallback={<FullScreenSpinner />}>
       <RouterProvider router={route} />
+      </Suspense>
     </Provider>
   </React.StrictMode>
 );

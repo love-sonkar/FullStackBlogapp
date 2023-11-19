@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { logOut, login } from "../reduxstore/authSlice";
 import authServcie from "../appwrite/auth";
 import toast, { Toaster } from "react-hot-toast";
+import Spinner from "./Spinner";
 
 const OutletWrapper = () => {
   const [loading, setLoading] = useState(true);
@@ -35,7 +36,7 @@ const OutletWrapper = () => {
     <div className="min-h-[100dvh] flex flex-col dark:bg-gray-600 w-full">
       <Toaster />
       <Header />
-      {loading ? <h1>Loading...</h1> : <Outlet />}
+      {loading ? <h1><Spinner /> Loading...</h1> : <Outlet />}
       <Footer />
     </div>
   );
