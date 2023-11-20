@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import ButtonComponent from "./ButtonComponent";
-import toast from "react-hot-toast";
-import DataBase from "../appwrite/dbconfig";
-import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
 import { useSelector } from "react-redux";
-import AuthorComponent from "./AuthorComponent";
-import { FullScreenSpinner } from "./Spinner";
+import DataBase from "../appwrite/dbconfig";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
+import toast from "react-hot-toast";
+import {FullScreenSpinner,AuthorComponent,ButtonComponent} from "./index"
+
 
 const ReadSingleBlog = () => {
   const [singlePost, setSinglePost] = useState(null);

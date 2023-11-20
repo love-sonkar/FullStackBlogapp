@@ -1,10 +1,9 @@
 import React from "react";
-import { ButtonComponent } from "./index";
 import { Link, useNavigate } from "react-router-dom";
 import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
-import AuthorComponent from "./AuthorComponent";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import { ButtonComponent,AuthorComponent } from "./index";
 
 const PostItem = ({ data }) => {
   const navigate = useNavigate()

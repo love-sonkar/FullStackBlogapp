@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import AddBlog from "./AddBlog";
-import { FetchSinglePost } from "./formcomponent/FetchingData";
-import { FullScreenSpinner } from "./Spinner";
+import { AddBlog,FetchSinglePost ,FullScreenSpinner} from "./index";
 
 const EditBlog = () => {
   const { id } = useParams();

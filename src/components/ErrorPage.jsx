@@ -1,6 +1,6 @@
 import React from 'react'
-import ButtonComponent from './ButtonComponent'
 import { useNavigate } from 'react-router-dom'
+import {ButtonComponent} from "./index"
 
 const ErrorPage = () => {
   const navigate = useNavigate()

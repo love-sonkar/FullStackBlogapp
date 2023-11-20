@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ButtonComponent from "./ButtonComponent";
 import { useDispatch } from "react-redux";
 import authServcie from "../appwrite/auth";
 import { logOut } from "../reduxstore/authSlice";
 import { useNavigate } from "react-router-dom";
+import ButtonComponent from "./index";
 
 const LogOutButton = () => {
   const dispatch = useDispatch();

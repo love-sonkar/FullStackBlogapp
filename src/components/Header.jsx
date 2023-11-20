@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import ThemeToggler from "./ThemeToggler";
-import LogOutButton from "./LogOutButton";
 import { useSelector } from "react-redux";
-import ButtonComponent from "./ButtonComponent";
-import LinkComponent from "./LinkComponent";
+import {ButtonComponent,LinkComponent,LogOutButton,ThemeToggler } from "./index"
 
 const Header = () => {
   const navigate = useNavigate();

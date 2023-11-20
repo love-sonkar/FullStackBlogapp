@@ -1,10 +1,10 @@
 import React,{useState} from "react";
-import ButtonComponent from "./ButtonComponent";
 import authServcie from "../appwrite/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../reduxstore/authSlice";
+import {ButtonComponent} from './index'
 
 const GuestLogin = ({ title = "Login" }) => {
   const navigate = useNavigate();

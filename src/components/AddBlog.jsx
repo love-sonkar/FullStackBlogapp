@@ -1,18 +1,21 @@
 import React from "react";
-import FromSectionWrapper from "./formcomponent/FromSectionWrapper";
 import { useForm } from "react-hook-form";
-import HeadingTag from "./HeadingTag";
-import InputBox, { TextArea } from "./InputBox";
-import ErrorText from "./formcomponent/ErrorText";
-import ButtonComponent from "./ButtonComponent";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AddBlogObject, UpdateBlog } from "../formsobject";
 import { useSelector } from "react-redux";
-import toast from "react-hot-toast";
 import DataBase from "../appwrite/dbconfig";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import fileUpload from "../appwrite/uploadfile";
 import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
+import {
+  FormSectionWrapper,
+  ButtonComponent,
+  ErrorText,
+  InputBox,
+  TextArea,
+  HeadingTag,
+} from "./index";
 
 const AddBlog = ({ data }) => {
   const navigate = useNavigate();
@@ -48,7 +51,7 @@ const AddBlog = ({ data }) => {
         } catch (error) {
           console.log(error);
         }
-      }else{
+      } else {
         toast.success("No Changes");
         navigate("/");
       }
@@ -76,7 +79,7 @@ const AddBlog = ({ data }) => {
     reset();
   };
   return (
-    <FromSectionWrapper>
+    <FormSectionWrapper>
       <form
         noValidate
         onSubmit={handleSubmit(handleAddBlog)}
@@ -127,7 +130,7 @@ const AddBlog = ({ data }) => {
           {data ? "Update Blog" : "Add Blog"}
         </ButtonComponent>
       </form>
-    </FromSectionWrapper>
+    </FormSectionWrapper>
   );
 };
 
