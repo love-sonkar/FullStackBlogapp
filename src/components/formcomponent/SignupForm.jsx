@@ -10,7 +10,7 @@ import { login } from "../../reduxstore/authSlice";
 import {
   HeadingTag,
   GuestLogin,
-  FromSectionWrapper,
+  FormSectionWrapper,
   ErrorText,
   InputBox,
   ButtonComponent,
@@ -43,7 +43,7 @@ const SignupForm = () => {
     reset();
   };
   return (
-    <FromSectionWrapper>
+    <FormSectionWrapper>
       <form
         noValidate
         onSubmit={handleSubmit(singupFormFun)}
@@ -109,7 +109,7 @@ const SignupForm = () => {
           </Link>
         </p>
       </form>
-    </FromSectionWrapper>
+    </FormSectionWrapper>
   );
 };
 

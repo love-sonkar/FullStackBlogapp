@@ -24,7 +24,7 @@ const ReadSingleBlog = lazy(() => import("./ReadSingleBlog"));
 const AddBlog = lazy(() => import("./AddBlog"));
 const ErrorPage = lazy(() => import("./ErrorPage"));
 const OptionComponent = lazy(() => import("./OptionComponent"));
-const EditBlog = lazy(() => "./EditBlog");
+const EditBlog = lazy(() => import("./EditBlog"));
 
 export {
   OutletWrapper,
