@@ -103,7 +103,7 @@ const SignupForm = () => {
         </ButtonComponent>
         <GuestLogin title="Singup" />
         <p className="text-center text-black dark:text-white">
-          Have a account{" "}
+          Have a account
           <Link to="/login" className="decoration-solid text-blue-400">
             Login
           </Link>

@@ -8,18 +8,23 @@ import {ButtonComponent} from './index'
 
 const GuestLogin = ({ title = "Login" }) => {
   const navigate = useNavigate();
-  const dispath = useDispatch()
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(false);
   const handleClick = async () => {
     setLoading(true);
+    const data = {
+      email:"guestuser@gmail.com",
+      password:"guestuser",
+    }
     try {
-      const user = await authServcie.login({email:"guestuser@gmail.com", password:"guestuser"});
-      if (user) {
-        toast.success("Login success");
-        dispath(login(user))
-        navigate("/");
-      } else {
-        toast.error("Somthing went wrong");
+      const UserLogin = await authServcie.login({ ...data });
+      if (UserLogin) {
+        const getUserData = await authServcie.getUser();
+        if (getUserData) {
+          dispatch(login(getUserData));
+          toast.success("User Login");
+          navigate("/");
+        }
       }
     } catch (error) {
       console.log(error);
