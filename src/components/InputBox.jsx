@@ -13,7 +13,6 @@ const InputBox = ({ type, placeholder, register, title, className = "" }) => {
     right: "9px",
     top: "14px",
     cursor: "pointer",
-    color: "#2a4dd0",
   };
   return (
     <div className="relative">
@@ -32,9 +31,9 @@ const InputBox = ({ type, placeholder, register, title, className = "" }) => {
       />
       {check && (
         typeCheck ? (
-          <IoEyeOutline style={styleEye} onClick={handleEye} />
+          <IoEyeOutline style={styleEye} className="text-blue-500 dark:text-white" onClick={handleEye} />
         ) : (
-          <IoEyeOffOutline style={styleEye} onClick={handleEye} />
+          <IoEyeOffOutline style={styleEye} className="text-blue-500 dark:text-white" onClick={handleEye} />
         )
       ) }
     </div>
