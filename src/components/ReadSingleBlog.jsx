@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import DataBase from "../appwrite/dbconfig";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
+import {  MdDelete } from "react-icons/md";
 import toast from "react-hot-toast";
 import {FullScreenSpinner,AuthorComponent,ButtonComponent} from "./index"
 
@@ -33,7 +34,13 @@ const ReadSingleBlog = () => {
         <FullScreenSpinner/> 
       ) : (
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <div className="flex justify-between items-center">
           <AuthorComponent name={singlePost?.author}/>
+          {userData?.$id ===singlePost?.userid? <MdDelete
+                onClick={() => navigate("/")}
+                className="text-2xl text-red-600 cursor-pointer mr-2"
+                /> :null}
+                </div>
           <Link link="/">
             <img
               className="rounded-t-lg"
