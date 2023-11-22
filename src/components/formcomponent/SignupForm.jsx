@@ -104,8 +104,8 @@ const SignupForm = () => {
         <GuestLogin title="Singup" />
         <p className="text-center text-black dark:text-white">
           Have a account
-          <Link to="/login" className="decoration-solid text-blue-400">
-            Login
+          <Link to="/login" className="decoration-solid text-blue-400 ml-1">
+             Login
           </Link>
         </p>
       </form>
