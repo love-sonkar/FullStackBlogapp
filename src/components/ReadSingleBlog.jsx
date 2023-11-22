@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import DataBase from "../appwrite/dbconfig";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
+import { ImageFilePreviewSrc, deleteFunction } from "./formcomponent/FetchingData";
 import {  MdDelete } from "react-icons/md";
 import toast from "react-hot-toast";
 import {FullScreenSpinner,AuthorComponent,ButtonComponent} from "./index"
@@ -28,6 +28,7 @@ const ReadSingleBlog = () => {
     FetchSingleBlog();
   }, []);
 
+
   return (
     <div className="p-4 flex items-center justify-center h-full">
       {singlePost === null ? (
@@ -37,7 +38,7 @@ const ReadSingleBlog = () => {
           <div className="flex justify-between items-center">
           <AuthorComponent name={singlePost?.author}/>
           {userData?.$id ===singlePost?.userid? <MdDelete
-                onClick={() => navigate("/")}
+                onClick={() => { deleteFunction(singlePost.images,singlePost.$id),navigate("/")}}
                 className="text-2xl text-red-600 cursor-pointer mr-2"
                 /> :null}
                 </div>

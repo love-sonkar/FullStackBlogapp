@@ -25,7 +25,6 @@ export const deleteFunction = async (imageid, id) => {
       const deleteBlog = await DataBase.deletePost(id);
       if (deleteBlog) {
         toast.success("successfully Deleted");
-        navigate("/");
       }
     } else {
       toast.error("Somthing went wrong");
