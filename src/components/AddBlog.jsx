@@ -16,6 +16,8 @@ import {
   TextArea,
   HeadingTag,
 } from "./index";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import DummyImg from '/src/public/img/dummy.jpg'
 
 const AddBlog = ({ data }) => {
   const navigate = useNavigate();
@@ -89,11 +91,11 @@ const AddBlog = ({ data }) => {
         {data?.images ? (
           <>
             <h2 className="dark:text-white">Image Preview</h2>
-            <div className="aspect-video overflow-hidden">
-              <img
-                className="aspect-video object-contain"
+            <div className="aspect-video overflow-hidden image-href">
+              <LazyLoadImage
+                className="object-contain mx-auto"
                 src={ImageFilePreviewSrc(data?.images)}
-                alt=""
+                placeholderSrc={DummyImg}
               />
             </div>
           </>

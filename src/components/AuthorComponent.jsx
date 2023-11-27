@@ -9,6 +9,7 @@ const AuthorComponent = ({name="dummy"}) => {
       alt="avatar"
     />
     <div className='flex flex-col'>
+
     <h2 className="capitalize text-xl leading-none dark:text-white">{name}</h2>
     <p className='text-xs dark:text-white'>@{name}</p>
     </div>
