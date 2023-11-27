@@ -12,7 +12,7 @@ const PostItem = ({ data }) => {
     return paragraph.length >= digit ? paragraph.slice(0,digit) + "..." : paragraph;
   }
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between">
       <div className="flex justify-between items-center  border-b-2 dark:border-gray-500 mb-2 px-3">
       <AuthorComponent name={data?.author} />
       {userData?.$id === data?.userid ? 
@@ -25,7 +25,7 @@ const PostItem = ({ data }) => {
       </div>
       <Link link="/" >
         <img
-          className="rounded-t-lg aspect-video object-contain"
+          className="rounded-t-lg aspect-video object-contain mx-auto"
           src={ImageFilePreviewSrc(data.images)}
           alt=""
         />

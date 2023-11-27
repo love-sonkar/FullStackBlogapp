@@ -12,7 +12,7 @@ const App = () => {
     }
   }, []);
   return (
-    <div className="p-4 flex-wrap flex gap-3 items-center justify-center">
+    <div className="p-4 flex-wrap flex gap-3 items-stretch justify-center">
       {post == null ? (
         <FullScreenSpinner />
       ) : post.documents.length <= 0 ? (
