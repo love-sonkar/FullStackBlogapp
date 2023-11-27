@@ -6,6 +6,8 @@ import { ImageFilePreviewSrc, deleteFunction } from "./formcomponent/FetchingDat
 import {  MdDelete } from "react-icons/md";
 import toast from "react-hot-toast";
 import {FullScreenSpinner,AuthorComponent,ButtonComponent} from "./index"
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import DummyImg from '/src/public/img/dummy.jpg'
 
 
 const ReadSingleBlog = () => {
@@ -43,10 +45,11 @@ const ReadSingleBlog = () => {
                 /> :null}
                 </div>
           <Link link="/">
-            <img
+            <LazyLoadImage
               className="rounded-t-lg mx-auto"
               src={ImageFilePreviewSrc(singlePost?.images)}
               alt={singlePost?.images}
+              placeholderSrc={DummyImg}
             />
           </Link>
           <div className="p-5 border-t-2 dark:border-gray-500 mt-2">

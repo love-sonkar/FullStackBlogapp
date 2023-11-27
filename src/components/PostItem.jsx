@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ImageFilePreviewSrc } from "./formcomponent/FetchingData";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import DummyImg from '/src/public/img/dummy.jpg'
 import { ButtonComponent,AuthorComponent } from "./index";
 
 const PostItem = ({ data }) => {
@@ -23,11 +25,12 @@ const PostItem = ({ data }) => {
       </div>
       : null}
       </div>
-      <Link to={`/singleblog/${data.$id}`} >
-        <img
+      <Link to={`/singleblog/${data.$id}`} className="image-href">
+        <LazyLoadImage
           className="rounded-t-lg aspect-video object-contain mx-auto"
           src={ImageFilePreviewSrc(data.images)}
-          alt=""
+          alt="BlogImages"
+          placeholderSrc={DummyImg}
         />
       </Link>
       <div className="p-5 border-t-2 dark:border-gray-500 mt-2">
