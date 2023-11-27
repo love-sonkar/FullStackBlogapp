@@ -15,6 +15,7 @@ import {
   AddBlog,
   AuthLayout,
   FullScreenSpinner,
+  UserProfile,
 } from "./components/index.js";
 import "./index.css";
 
@@ -80,6 +81,14 @@ const route = createBrowserRouter([
           </AuthLayout>
         ),
       },
+      {
+        path:'/user',
+        element:(
+          <AuthLayout authentication={true}>
+            <UserProfile />
+          </AuthLayout>
+        )
+      }
     ],
   },
 ]);

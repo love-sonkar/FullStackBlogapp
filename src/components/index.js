@@ -25,6 +25,7 @@ const AddBlog = lazy(() => import("./AddBlog"));
 const ErrorPage = lazy(() => import("./ErrorPage"));
 const OptionComponent = lazy(() => import("./OptionComponent"));
 const EditBlog = lazy(() => import("./EditBlog"));
+const UserProfile =lazy(()=>import("./UserProfile"));
 
 export {
   OutletWrapper,
@@ -53,4 +54,5 @@ export {
   ErrorPage,
   Login,
   OptionComponent,
+  UserProfile,
 };

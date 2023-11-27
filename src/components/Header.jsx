@@ -17,6 +17,10 @@ const Header = () => {
       path: "/addblog",
       name: "Add Blog",
     },
+    {
+      path:'/user',
+      name: "Profile",
+    }
   ];
   const pathname = location.pathname;
   const CheckOpen = open ? "block" : "hidden";

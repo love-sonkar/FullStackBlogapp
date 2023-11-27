@@ -44,7 +44,7 @@ const ReadSingleBlog = () => {
                 className="text-2xl text-red-600 cursor-pointer mr-2"
                 /> :null}
                 </div>
-          <Link link="/">
+          <Link className="image-href">
             <LazyLoadImage
               className="rounded-t-lg mx-auto"
               src={ImageFilePreviewSrc(singlePost?.images)}
