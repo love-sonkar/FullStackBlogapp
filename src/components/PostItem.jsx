@@ -23,7 +23,7 @@ const PostItem = ({ data }) => {
       </div>
       : null}
       </div>
-      <Link link="/" >
+      <Link to={`/singleblog/${data.$id}`} >
         <img
           className="rounded-t-lg aspect-video object-contain mx-auto"
           src={ImageFilePreviewSrc(data.images)}

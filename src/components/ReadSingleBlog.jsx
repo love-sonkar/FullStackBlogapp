@@ -44,7 +44,7 @@ const ReadSingleBlog = () => {
                 </div>
           <Link link="/">
             <img
-              className="rounded-t-lg"
+              className="rounded-t-lg mx-auto"
               src={ImageFilePreviewSrc(singlePost?.images)}
               alt={singlePost?.images}
             />
