@@ -21,8 +21,8 @@ const UserProfile = () => {
   <div className="">
     {profileData.map((itme)=>(
       <div key={itme.title}>
-        <h2>{itme.title}</h2>
-        <h2>{itme.content}</h2>
+        <h2 className="text-black dark:text-white">{itme.title}</h2>
+        <h2 className="text-black dark:text-white">{itme.content}</h2>
       </div>
     ))}
   </div>
