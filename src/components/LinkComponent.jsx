@@ -6,7 +6,7 @@ const LinkComponent = ({ children, link,className }) => {
   return (
     <Link
       to={link ?? "/"}
-      className={`py-2 px-1 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:hover:text-blue-500 dark:hover:bg-gray-700  md:dark:hover:bg-transparent dark:border-gray-700 ${ActiveClass}`}
+      className={`py-2 px-1 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:hover:text-blue-500 dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:border-gray-700 ${ActiveClass}`}
     >
       {children}
     </Link>
