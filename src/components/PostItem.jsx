@@ -16,7 +16,7 @@ const PostItem = ({ data }) => {
   return (
     <div className="w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between">
       <div className="flex justify-between items-center  border-b-2 dark:border-gray-500 mb-2 px-3">
-      <AuthorComponent name={data?.author}/>
+      <AuthorComponent name={data?.author} cardData={data}/>
       {userData?.$id === data?.userid ? 
       <div
       className="p-2 dark:text-white hover:dark:bg-gray-700 cursor-pointer hover:bg-gray-400 hover:text-white rounded-full"

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AuthorComponent = ({name="dummy"}) => {
+const AuthorComponent = ({name="dummy",cardData}) => {
   return (
     <div className="py-3 px-2 flex gap-2 items-center">
     <img
@@ -9,7 +9,6 @@ const AuthorComponent = ({name="dummy"}) => {
       alt="avatar"
     />
     <div className='flex flex-col'>
-
     <h2 className="capitalize text-xl leading-none dark:text-white">{name}</h2>
     <p className='text-xs dark:text-white'>@{name}</p>
     </div>
