@@ -20,11 +20,11 @@ const AuthorComponent = ({name="dummy",cardData}) => {
     />
     <div className='flex flex-col relative'>
     <h2 onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className="capitalize text-xl leading-none dark:text-white cursor-pointer">{name}</h2>
-    {isHover &&
-    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}  className='absolute -top-full rounded-md z-20 left-1 h-10 w-10 bg-red-500'>
+    {/* {isHover &&
+    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute -top-full rounded-md z-20 left-1 h-10 w-10 bg-red-500'>
       hi
     </div>
-    }
+    } */}
     <p className='text-xs dark:text-white'>@{name}</p>
     </div>
   </div>
