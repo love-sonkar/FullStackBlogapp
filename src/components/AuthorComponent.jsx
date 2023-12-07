@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AuthorComponent = ({name="dummy",cardData}) => {
+const AuthorComponent = ({name="dummy"}) => {
   const [isHover,setIsHover] = useState(false);
   const handleMouseOver = () => {
     setIsHover(true);
@@ -20,9 +20,9 @@ const AuthorComponent = ({name="dummy",cardData}) => {
     <div className='flex flex-col relative'>
     <h2 onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className="capitalize text-xl leading-none dark:text-white cursor-pointer">{name}</h2>
     {isHover &&
-    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute -top-full z-20 left-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
-       <h2 className='text-base'>{name}</h2>
-       <h2>@{name}</h2>
+    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute -bottom-full z-20 left-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 px-3 py-2 w-max cursor-pointer'>
+       <h2 className='text-base dark:text-white'>Name - <span className='text-xs'>{name}</span></h2>
+       <h2 className='dark:text-white'>Username - <span className='text-xs'>{name}</span></h2>
     </div>
     }
     <p className='text-xs dark:text-white'>@{name}</p>
