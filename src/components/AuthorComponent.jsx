@@ -10,7 +10,6 @@ const AuthorComponent = ({name="dummy",cardData}) => {
     setIsHover(false);
   };
 
-
   return (
     <div className="py-3 px-2 flex gap-2 items-center">
     <img
@@ -20,11 +19,12 @@ const AuthorComponent = ({name="dummy",cardData}) => {
     />
     <div className='flex flex-col relative'>
     <h2 onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className="capitalize text-xl leading-none dark:text-white cursor-pointer">{name}</h2>
-    {/* {isHover &&
-    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute -top-full rounded-md z-20 left-1 h-10 w-10 bg-red-500'>
-      hi
+    {isHover &&
+    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute -top-full z-20 left-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+       <h2 className='text-base'>{name}</h2>
+       <h2>@{name}</h2>
     </div>
-    } */}
+    }
     <p className='text-xs dark:text-white'>@{name}</p>
     </div>
   </div>
