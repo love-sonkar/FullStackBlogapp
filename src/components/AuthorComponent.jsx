@@ -9,7 +9,7 @@ const AuthorComponent = ({name="dummy"}) => {
       alt="avatar"
     />
     <div className='flex flex-col relative'>
-    <h2 onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className="capitalize text-xl leading-none dark:text-white cursor-pointer">{name}</h2>
+    <h2 className="capitalize text-xl leading-none dark:text-white cursor-pointer">{name}</h2>
     <p className='text-xs dark:text-white'>@{name}</p>
     </div>
   </div>
