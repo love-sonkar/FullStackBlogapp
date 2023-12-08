@@ -99,7 +99,7 @@ const SignupForm = () => {
         </div>
 
         <ButtonComponent type="submit" disabled={isSubmitting}>
-        Signup
+          Signup
         </ButtonComponent>
         <GuestLogin title="Singup" />
         <p className="text-center text-black dark:text-white">
