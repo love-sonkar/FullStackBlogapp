@@ -20,7 +20,7 @@ const AuthorComponent = ({name="dummy"}) => {
     <div className='flex flex-col relative'>
     <h2 onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className="capitalize text-xl leading-none dark:text-white cursor-pointer">{name}</h2>
     {isHover &&
-    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute -bottom-full z-20 left-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 px-3 py-2 w-max cursor-pointer'>
+    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute right-0 -bottom-full z-20 left-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 px-3 py-2 w-max cursor-pointer'>
        <h2 className='text-base dark:text-white'>Name - <span className='text-xs'>{name}</span></h2>
        <h2 className='dark:text-white'>Username - <span className='text-xs'>{name}</span></h2>
     </div>
