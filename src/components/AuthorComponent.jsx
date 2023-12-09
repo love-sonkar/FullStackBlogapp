@@ -1,4 +1,4 @@
-import react, { useState } from 'react'
+import React, { useState } from 'react'
 
 const AuthorComponent = ({name="dummy"}) => {
   const [isHover,setIsHover] = useState(false);
@@ -9,10 +9,7 @@ const AuthorComponent = ({name="dummy"}) => {
   const handleMouseOut = () => {
     setIsHover(false);
   };
-
-import React from 'react'
-
-const AuthorComponent = ({name="dummy"}) => {
+  
   return (
     <div className="py-3 px-2 flex gap-2 items-center">
     <img
