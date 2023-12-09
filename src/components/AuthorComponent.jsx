@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useLocation } from 'react-router-dom';
 
-const AuthorComponent = ({name="dummy"}) => {
+const AuthorComponent = ({name="dummy",imgSrc}) => {
+  const location = useLocation()
   const [isHover,setIsHover] = useState(false);
   const handleMouseOver = () => {
     setIsHover(true);
@@ -9,7 +12,9 @@ const AuthorComponent = ({name="dummy"}) => {
   const handleMouseOut = () => {
     setIsHover(false);
   };
-  
+
+  const checkLocation = location.pathname === "/" 
+
   return (
     <div className="py-3 px-2 flex gap-2 items-center">
     <img
@@ -17,12 +22,14 @@ const AuthorComponent = ({name="dummy"}) => {
       src="https://images.pexels.com/photos/5876695/pexels-photo-5876695.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
       alt="avatar"
     />
-    <div className='flex flex-col relative'>
+    <div className='flex flex-col relative select-none'>
     <h2 onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className="capitalize text-xl leading-none dark:text-white cursor-pointer">{name}</h2>
-    {isHover &&
-    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute right-0 -bottom-full z-20 left-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 px-3 py-2 w-max cursor-pointer'>
-       <h2 className='text-base dark:text-white'>Name - <span className='text-xs'>{name}</span></h2>
-       <h2 className='dark:text-white'>Username - <span className='text-xs'>{name}</span></h2>
+    {location.pathname === "/" &&
+    isHover &&
+    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute right-0 top-0 z-20 left-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 px-3 py-2 w-max cursor-pointer'>
+       <h2 className='text-base dark:text-white'>{name}</h2>
+       <h2 className='dark:text-white text-sm mb-2'>@{name}</h2>
+       <LazyLoadImage className='w-36 object-cover' src={imgSrc} placeholderSrc='blur' />
     </div>
     }
     <p className='text-xs dark:text-white'>@{name}</p>
