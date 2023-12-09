@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const AuthorComponent = ({name="dummy",imgSrc}) => {
+const AuthorComponent = ({name="dummy",imgSrc,imgId}) => {
   const location = useLocation()
   const [isHover,setIsHover] = useState(false);
   const handleMouseOver = () => {
@@ -11,10 +11,7 @@ const AuthorComponent = ({name="dummy",imgSrc}) => {
 
   const handleMouseOut = () => {
     setIsHover(false);
-  };
-
-  const checkLocation = location.pathname === "/" 
-
+  };  
   return (
     <div className="py-3 px-2 flex gap-2 items-center">
     <img
@@ -29,7 +26,9 @@ const AuthorComponent = ({name="dummy",imgSrc}) => {
     <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='absolute right-0 top-0 z-20 left-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 px-3 py-2 w-max cursor-pointer'>
        <h2 className='text-base dark:text-white'>{name}</h2>
        <h2 className='dark:text-white text-sm mb-2'>@{name}</h2>
+       <Link to={`/singleblog/${imgId}`}>
        <LazyLoadImage className='w-36 object-cover' src={imgSrc} placeholderSrc='blur' />
+       </Link>
     </div>
     }
     <p className='text-xs dark:text-white'>@{name}</p>
