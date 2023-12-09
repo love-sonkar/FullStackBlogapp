@@ -25,7 +25,6 @@ const AuthorComponent = ({name="dummy"}) => {
        <h2 className='dark:text-white'>Username - <span className='text-xs'>{name}</span></h2>
     </div>
     }
-    <h2 className="capitalize text-xl leading-none dark:text-white cursor-pointer">{name}</h2>
     <p className='text-xs dark:text-white'>@{name}</p>
     </div>
   </div>
