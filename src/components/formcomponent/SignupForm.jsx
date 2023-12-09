@@ -99,9 +99,9 @@ const SignupForm = () => {
         </div>
 
         <ButtonComponent type="submit" disabled={isSubmitting}>
-          Singup
+          Signup
         </ButtonComponent>
-        <GuestLogin title="Singup" />
+        <GuestLogin title="Signup" />
         <p className="text-center text-black dark:text-white">
           Have a account
           <Link to="/login" className="decoration-solid text-blue-400 ml-1">
