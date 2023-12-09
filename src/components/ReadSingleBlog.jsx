@@ -29,9 +29,6 @@ const ReadSingleBlog = () => {
     };
     FetchSingleBlog();
   }, []);
-    const ImgSrc = ImageFilePreviewSrc(singlePost?.images)
-  console.log(ImgSrc)
-
   return (
     <div className="p-4 flex items-center justify-center h-full">
       {singlePost === null ? (
