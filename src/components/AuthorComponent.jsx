@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import react, { useState } from 'react'
 
 const AuthorComponent = ({name="dummy"}) => {
   const [isHover,setIsHover] = useState(false);
