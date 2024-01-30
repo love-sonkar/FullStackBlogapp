@@ -12,7 +12,6 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const status = useSelector((state) => state.status);
-  const userData = useSelector((state) => state.userData);
   const [open, setOpen] = useState(false);
   const HeaderLink = [
     {
