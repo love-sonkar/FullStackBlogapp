@@ -19,12 +19,12 @@ export class authservice {
         name
       );
       if (account) {
-        return this.login({email, password});
+        return this.login({ email, password });
       } else {
         return account;
       }
     } catch (error) {
-      toast.error(error.response.message)
+      toast.error(error.response.message);
     }
   }
 
@@ -32,7 +32,7 @@ export class authservice {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
-      toast.error(error.response.message)
+      toast.error(error.response.message);
     }
   }
 
@@ -40,7 +40,7 @@ export class authservice {
     try {
       return this.account.deleteSessions();
     } catch (error) {
-      toast.error(error.response.message)
+      toast.error(error.response.message);
     }
   }
 
@@ -48,7 +48,7 @@ export class authservice {
     try {
       return this.account.get();
     } catch (error) {
-      toast.error(error.response.message)
+      console.log(error);
     }
   }
 }

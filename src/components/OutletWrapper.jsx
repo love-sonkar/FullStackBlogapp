@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { logOut, login } from "../reduxstore/authSlice";
 import authServcie from "../appwrite/auth";
 import toast, { Toaster } from "react-hot-toast";
-import { Footer, Header,FullScreenSpinner } from "./index";
+import { Footer, Header, FullScreenSpinner } from "./index";
 
 const OutletWrapper = () => {
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ const OutletWrapper = () => {
       try {
         const getuser = await authServcie.getUser();
         if (getuser) {
-          dispatch(login({...getuser}));
+          dispatch(login({ ...getuser }));
           navigate("/");
         } else {
           await authServcie.logout();
@@ -23,7 +23,6 @@ const OutletWrapper = () => {
           navigate("/login");
         }
       } catch (error) {
-        toast.error("somthing went wrong")
         console.log(error);
       }
     }
@@ -35,7 +34,7 @@ const OutletWrapper = () => {
     <div className="min-h-[100dvh] flex flex-col dark:bg-gray-600 w-full">
       <Toaster />
       <Header />
-      {loading ? <FullScreenSpinner />  : <Outlet />}
+      {loading ? <FullScreenSpinner /> : <Outlet />}
       <Footer />
     </div>
   );
