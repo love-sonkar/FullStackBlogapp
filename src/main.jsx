@@ -82,13 +82,13 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path:'/user',
-        element:(
+        path: "/user",
+        element: (
           <AuthLayout authentication={true}>
             <UserProfile />
           </AuthLayout>
-        )
-      }
+        ),
+      },
     ],
   },
 ]);
